@@ -42,9 +42,6 @@ window.onload = function() {
               // 顯示用戶姓名和使用者 ID
               document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
 
-              // 啟用表單輸入
-              enableForm();
-
               // 將姓名和使用者 ID 儲存到變數中，以便後續提交表單時使用
               var hiddenNameInput = document.getElementById('hiddenName');
               var hiddenUserIdInput = document.getElementById('hiddenUserId');
@@ -52,6 +49,9 @@ window.onload = function() {
               hiddenUserIdInput.value = userId;
               console.log('用戶姓名:', hiddenName);
               console.log('使用者 ID:', hiddenUserId);
+
+              // 啟用表單輸入
+              // enableForm();
             })
             .catch((error) => {
               console.error('獲取 Line 用戶資訊失敗', error);
