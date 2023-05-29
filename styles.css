@@ -11,7 +11,7 @@ h1 {
 form {
   font-size: 18px;
   margin: 20px auto;
-  max-width: 400px;
+  max-width: 350px;  /* 調整寬度為較小的值 */
   padding: 20px;
   background-color: #f7f7f7;
   border: 1px solid #ccc;
@@ -31,7 +31,9 @@ form input[type="email"] {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box; /* 確保內邊距不會增加元素的寬度 */
 }
+
 
 form input[type="submit"] {
   width: auto;
