@@ -50,6 +50,8 @@ window.onload = function() {
               var hiddenUserIdInput = document.getElementById('hiddenUserId');
               hiddenNameInput.value = name;
               hiddenUserIdInput.value = userId;
+              console.log('用戶姓名:', hiddenName);
+              console.log('使用者 ID:', hiddenUserId);
             })
             .catch((error) => {
               console.error('獲取 Line 用戶資訊失敗', error);
