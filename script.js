@@ -1,24 +1,18 @@
-// 初始化Firebase
+// 初始化 Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDHP_6Try_QBQri-25_WGUegQn2GiLDxt0",
-  authDomain: "line-bot-c9ed0.firebaseapp.com",
-  projectId: "line-bot-c9ed0",
-  storageBucket: "line-bot-c9ed0.appspot.com",
-  messagingSenderId: "880021780854",
-  appId: "1:880021780854:web:852f894d6e674fbe70e257",
-  measurementId: "G-216V2TNXZ4"
+  // Firebase 配置
 };
 
 firebase.initializeApp(firebaseConfig);
 
-// 獲取Firestore資料庫實例
+// 獲取 Firestore 資料庫實例
 var db = firebase.firestore();
 
 // 當網頁載入完成後執行的函式
 window.onload = function() {
   // 初始化 Line Login SDK
   function initializeLineLogin() {
-    liff.init({ liffId: '1661222932-v3wdnbPr' })
+    liff.init({ liffId: 'YOUR_LIFF_ID' })
       .then(() => {
         // 註冊點擊事件處理函式
         document.getElementById('lineLoginButton').addEventListener('click', lineLogin);
@@ -84,7 +78,7 @@ window.onload = function() {
     var hiddenName = hiddenNameInput.value;
     var hiddenUserId = hiddenUserIdInput.value;
 
-    // 在這裡你可以將姓名、公司、生日、信箱、姓名和使用者 ID 儲存到Firebase Firestore或其他後端系統中
+    // 在控制台輸出資料
     console.log('姓名:', name);
     console.log('公司:', company);
     console.log('生日:', birthday);
@@ -92,34 +86,29 @@ window.onload = function() {
     console.log('用戶姓名:', hiddenName);
     console.log('使用者 ID:', hiddenUserId);
 
-    // 清空表單輸入
-    userForm.reset();
-
-    // 隱藏表單輸入
-    userForm.style.display = 'none';
+    // 將資料儲存到 Firestore
+    db.collection('Tourist_Guide').add({
+      name: name,
+      company: company,
+      birthday: birthday,
+      email: email,
+      qualified: true,
+      line_name: hiddenName,
+      line_userId: hiddenUserId
+    })
+      .then(function(docRef) {
+        console.log('文件已成功添加，ID:', docRef.id);
+        // 清除表單
+        document.getElementById('name').value = '';
+        document.getElementById('company').value = '';
+        document.getElementById('birthday').value = '';
+        document.getElementById('email').value = '';
+      })
+      .catch(function(error) {
+        console.error('儲存資料時出現錯誤:', error);
+      });
   });
 
   // 呼叫初始化函式
   initializeLineLogin();
 };
-
-//   // 將資料儲存到Firestore
-//   db.collection("Tourist_Guide").add({
-//       name: name,
-//       company: company,
-//       birthday: birthday,
-//       email: email,
-//       qualified: true
-//   })
-//   .then(function(docRef) {
-//       console.log("文件已成功添加，ID:", docRef.id);
-//       // 清除表單
-//       document.getElementById('name').value = '';
-//       document.getElementById('company').value = '';
-//       document.getElementById('birthday').value = '';
-//       document.getElementById('email').value = '';
-//   })
-//   .catch(function(error) {
-//       console.error("儲存資料時出現錯誤:", error);
-//   });
-// });
