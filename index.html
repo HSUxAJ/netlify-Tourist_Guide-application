@@ -34,7 +34,12 @@
                                 var userId = profile.userId;
 
                                 // 顯示用戶姓名和使用者 ID
-                                document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
+                                var userDataElement = document.getElementById('userData');
+                                userDataElement.innerHTML = '用戶姓名: ' + name + '<br>使用者 ID: ' + userId;
+
+                                // 隱藏登入按鈕
+                                var loginButton = document.getElementById('lineLoginButton');
+                                loginButton.style.display = 'none';
                             })
                             .catch((error) => {
                                 console.error('獲取 Line 用戶資訊失敗', error);
