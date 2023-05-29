@@ -1,49 +1,54 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-}
-
+/* 標題 */
 h1 {
   text-align: center;
   font-size: 28px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
 }
 
 /* 表單 */
 form {
   font-size: 18px;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-}
-
-input[type="text"],
-input[type="date"],
-input[type="email"] {
-  width: 100%;
-  padding: 5px;
-  margin-top: 5px;
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f7f7f7;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
-input[type="submit"] {
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="email"] {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  width: auto;
+  padding: 10px 20px;
   background-color: #4CAF50;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
+/* 使用者資料 */
 #userData {
   font-size: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
