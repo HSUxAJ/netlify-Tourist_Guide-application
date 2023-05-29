@@ -24,32 +24,40 @@
 
         // Line 登入處理函式
         function lineLogin() {
-            liff.login()
-                .then(() => {
-                    if (liff.isLoggedIn()) {
-                        liff.getProfile()
-                            .then((profile) => {
-                                // 獲取用戶姓名和使用者 ID
-                                var name = profile.displayName;
-                                var userId = profile.userId;
-                                console.log(name)
+  liff.login()
+    .then(() => {
+      if (liff.isLoggedIn()) {
+        liff.getProfile()
+          .then((profile) => {
+            // 獲取用戶姓名和使用者 ID
+            var name = profile.displayName;
+            var userId = profile.userId;
 
-                                // 顯示用戶姓名和使用者 ID
-                                var userDataElement = document.getElementById('userData');
-                                userDataElement.innerHTML = '用戶姓名: ' + name + '<br>使用者 ID: ' + userId;
+            // 顯示用戶姓名和使用者 ID
+            document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
 
-                                // 隱藏登入按鈕
-                                document.getElementById('lineLoginButton').style.display = 'none';
-                            })
-                            .catch((error) => {
-                                console.error('獲取 Line 用戶資訊失敗', error);
-                            });
-                    }
-                })
-                .catch((error) => {
-                    console.error('Line 登入失敗', error);
-                });
-        }
+            // 將姓名和使用者 ID 儲存到變數中，以便後續提交表單時使用
+            var hiddenNameInput = document.getElementById('hiddenName');
+            var hiddenUserIdInput = document.getElementById('hiddenUserId');
+            hiddenNameInput.value = name;
+            hiddenUserIdInput.value = userId;
+
+            // 隱藏 LINE 登入按鈕
+            document.getElementById('lineLoginButton').style.display = 'none';
+
+            // 啟用表單輸入
+            enableForm();
+          })
+          .catch((error) => {
+            console.error('獲取 Line 用戶資訊失敗', error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.error('Line 登入失敗', error);
+    });
+}
+
 
         // 呼叫初始化函式
         initializeLineLogin();
