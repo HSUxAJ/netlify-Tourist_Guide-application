@@ -1,6 +1,12 @@
 // 初始化 Firebase
 const firebaseConfig = {
-  // Firebase 配置
+  apiKey: "AIzaSyDHP_6Try_QBQri-25_WGUegQn2GiLDxt0",
+  authDomain: "line-bot-c9ed0.firebaseapp.com",
+  projectId: "line-bot-c9ed0",
+  storageBucket: "line-bot-c9ed0.appspot.com",
+  messagingSenderId: "880021780854",
+  appId: "1:880021780854:web:852f894d6e674fbe70e257",
+  measurementId: "G-216V2TNXZ4"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -12,7 +18,7 @@ var db = firebase.firestore();
 window.onload = function() {
   // 初始化 Line Login SDK
   function initializeLineLogin() {
-    liff.init({ liffId: 'YOUR_LIFF_ID' })
+    liff.init({ liffId: '1661222932-v3wdnbPr' })
       .then(() => {
         // 註冊點擊事件處理函式
         document.getElementById('lineLoginButton').addEventListener('click', lineLogin);
