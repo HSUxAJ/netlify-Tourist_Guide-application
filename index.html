@@ -8,7 +8,7 @@
     <h1>Line 登入示例</h1>
     <button id="lineLoginButton">使用 Line 登入</button>
 
-    <div id="userData"></div>
+    <div id="userData">0</div>
 
     <script>
         // 初始化 Line Login SDK
@@ -32,6 +32,7 @@
                                 // 獲取用戶姓名和使用者 ID
                                 var name = profile.displayName;
                                 var userId = profile.userId;
+                                console.log(name)
 
                                 // 顯示用戶姓名和使用者 ID
                                 var userDataElement = document.getElementById('userData');
