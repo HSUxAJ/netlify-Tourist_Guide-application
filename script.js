@@ -14,38 +14,112 @@ firebase.initializeApp(firebaseConfig);
 // 獲取Firestore資料庫實例
 var db = firebase.firestore();
 
-document.querySelector('form').addEventListener('submit', function(event) {
-  event.preventDefault(); // 防止表單提交
-
-  // 取得輸入的值
-  var name = document.getElementById('name').value;
-  var company = document.getElementById('company').value;
-  var birthday = document.getElementById('birthday').value;
-  var email = document.getElementById('email').value;
-
-  // 驗證輸入的資料
-  if (!name || !company || !birthday || !email) {
-      alert('請填寫所有必填欄位');
-      return;
+// 當網頁載入完成後執行的函式
+window.onload = function() {
+  // 初始化 Line Login SDK
+  function initializeLineLogin() {
+    liff.init({ liffId: '1661222932-v3wdnbPr' })
+      .then(() => {
+        // 註冊點擊事件處理函式
+        document.getElementById('lineLoginButton').addEventListener('click', lineLogin);
+      })
+      .catch((error) => {
+        console.error('初始化 Line Login 失敗', error);
+      });
   }
 
-  // 將資料儲存到Firestore
-  db.collection("Tourist_Guide").add({
-      name: name,
-      company: company,
-      birthday: birthday,
-      email: email,
-      qualified: true
-  })
-  .then(function(docRef) {
-      console.log("文件已成功添加，ID:", docRef.id);
-      // 清除表單
-      document.getElementById('name').value = '';
-      document.getElementById('company').value = '';
-      document.getElementById('birthday').value = '';
-      document.getElementById('email').value = '';
-  })
-  .catch(function(error) {
-      console.error("儲存資料時出現錯誤:", error);
+  // Line 登入處理函式
+  function lineLogin() {
+    liff.login()
+      .then(() => {
+        if (liff.isLoggedIn()) {
+          liff.getProfile()
+            .then((profile) => {
+              // 獲取用戶姓名和使用者 ID
+              var name = profile.displayName;
+              var userId = profile.userId;
+
+              // 顯示用戶姓名和使用者 ID
+              document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
+
+              // 啟用表單輸入
+              enableForm();
+
+              // 將姓名和使用者 ID 儲存到變數中，以便後續提交表單時使用
+              var hiddenNameInput = document.getElementById('hiddenName');
+              var hiddenUserIdInput = document.getElementById('hiddenUserId');
+              hiddenNameInput.value = name;
+              hiddenUserIdInput.value = userId;
+            })
+            .catch((error) => {
+              console.error('獲取 Line 用戶資訊失敗', error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error('Line 登入失敗', error);
+      });
+  }
+
+  // 啟用表單輸入
+  function enableForm() {
+    var userForm = document.getElementById('userForm');
+    userForm.style.display = 'block';
+  }
+
+  // 監聽表單提交事件
+  var userForm = document.getElementById('userForm');
+  userForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // 防止表單提交
+
+    // 獲取用戶輸入的姓名、公司、生日和信箱
+    var name = document.getElementById('name').value;
+    var company = document.getElementById('company').value;
+    var birthday = document.getElementById('birthday').value;
+    var email = document.getElementById('email').value;
+
+    // 獲取之前儲存的姓名和使用者 ID
+    var hiddenNameInput = document.getElementById('hiddenName');
+    var hiddenUserIdInput = document.getElementById('hiddenUserId');
+    var hiddenName = hiddenNameInput.value;
+    var hiddenUserId = hiddenUserIdInput.value;
+
+    // 在這裡你可以將姓名、公司、生日、信箱、姓名和使用者 ID 儲存到Firebase Firestore或其他後端系統中
+    console.log('姓名:', name);
+    console.log('公司:', company);
+    console.log('生日:', birthday);
+    console.log('信箱:', email);
+    console.log('用戶姓名:', hiddenName);
+    console.log('使用者 ID:', hiddenUserId);
+
+    // 清空表單輸入
+    userForm.reset();
+
+    // 隱藏表單輸入
+    userForm.style.display = 'none';
   });
-});
+
+  // 呼叫初始化函式
+  initializeLineLogin();
+};
+
+//   // 將資料儲存到Firestore
+//   db.collection("Tourist_Guide").add({
+//       name: name,
+//       company: company,
+//       birthday: birthday,
+//       email: email,
+//       qualified: true
+//   })
+//   .then(function(docRef) {
+//       console.log("文件已成功添加，ID:", docRef.id);
+//       // 清除表單
+//       document.getElementById('name').value = '';
+//       document.getElementById('company').value = '';
+//       document.getElementById('birthday').value = '';
+//       document.getElementById('email').value = '';
+//   })
+//   .catch(function(error) {
+//       console.error("儲存資料時出現錯誤:", error);
+//   });
+// });
