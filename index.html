@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <title>導遊申請表</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>導遊申請表</h1>
+    <form>
+        <label for="name">姓名:</label>
+        <input type="text" id="name" required>
+
+        <label for="company">公司:</label>
+        <input type="text" id="company" required>
+
+        <label for="birthday">生日:</label>
+        <input type="date" id="birthday" required>
+
+        <label for="email">信箱:</label>
+        <input type="email" id="email" required>
+
+        <input type="submit" value="提交">
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
