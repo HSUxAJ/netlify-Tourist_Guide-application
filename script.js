@@ -38,7 +38,7 @@ window.onload = function() {
               // 獲取用戶姓名和使用者 ID
               var name = profile.displayName;
               var userId = profile.userId;
-
+              console.log('用戶資訊:', profile);
               // 顯示用戶姓名和使用者 ID
               document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
 
