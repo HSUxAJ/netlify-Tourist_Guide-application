@@ -79,10 +79,10 @@ window.onload = function() {
     var email = document.getElementById('email').value;
 
     // 獲取之前儲存的姓名和使用者 ID
-    // var hiddenNameInput = document.getElementById('hiddenName');
-    // var hiddenUserIdInput = document.getElementById('hiddenUserId');
-    // var hiddenName = hiddenNameInput.value;
-    // var hiddenUserId = hiddenUserIdInput.value;
+    var hiddenNameInput = document.getElementById('hiddenName');
+    var hiddenUserIdInput = document.getElementById('hiddenUserId');
+    var hiddenName = hiddenNameInput.value;
+    var hiddenUserId = hiddenUserIdInput.value;
 
     // 在這裡你可以將姓名、公司、生日、信箱、姓名和使用者 ID 儲存到Firebase Firestore或其他後端系統中
     console.log('姓名:', name);
