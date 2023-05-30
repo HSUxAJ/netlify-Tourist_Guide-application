@@ -1,66 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Line 登入示例</title>
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <title>Line 登入前</title>
 </head>
 <body>
-    <h1>Line 登入示例</h1>
-    <button id="lineLoginButton">使用 Line 登入</button>
-
-    <div id="userData">0</div>
-
-    <script>
-        // 初始化 Line Login SDK
-        function initializeLineLogin() {
-            liff.init({ liffId: '1661222932-v3wdnbPr' })
-                .then(() => {
-                    document.getElementById('lineLoginButton').addEventListener('click', lineLogin);
-                })
-                .catch((error) => {
-                    console.error('初始化 Line Login 失敗', error);
-                });
-        }
-
-        // Line 登入處理函式
-        function lineLogin() {
-  liff.login()
-    .then(() => {
-      if (liff.isLoggedIn()) {
-        liff.getProfile()
-          .then((profile) => {
-            // 獲取用戶姓名和使用者 ID
-            var name = profile.displayName;
-            var userId = profile.userId;
-
-            // 顯示用戶姓名和使用者 ID
-            document.getElementById('userData').innerText = '用戶姓名: ' + name + '\n使用者 ID: ' + userId;
-
-            // 將姓名和使用者 ID 儲存到變數中，以便後續提交表單時使用
-            var hiddenNameInput = document.getElementById('hiddenName');
-            var hiddenUserIdInput = document.getElementById('hiddenUserId');
-            hiddenNameInput.value = name;
-            hiddenUserIdInput.value = userId;
-
-            // 隱藏 LINE 登入按鈕
-            document.getElementById('lineLoginButton').style.display = 'none';
-
-            // 啟用表單輸入
-            enableForm();
-          })
-          .catch((error) => {
-            console.error('獲取 Line 用戶資訊失敗', error);
-          });
-      }
-    })
-    .catch((error) => {
-      console.error('Line 登入失敗', error);
-    });
-}
-
-        document.getElementById('lineLoginButton').style.display = 'none';
-        // 呼叫初始化函式
-        initializeLineLogin();
-    </script>
+  <h1>Line 登入前</h1>
+  <a href="/line-login">使用 Line 登入</a>
 </body>
 </html>
