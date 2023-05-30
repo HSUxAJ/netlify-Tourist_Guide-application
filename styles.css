@@ -1,18 +1,9 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-}
-
 h1 {
   color: #333;
 }
 
-a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4285F4;
-  color: #FFF;
-  text-decoration: none;
-  border-radius: 5px;
+p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
 }
