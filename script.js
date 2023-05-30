@@ -35,12 +35,16 @@ userForm.addEventListener('submit', function(event) {
 
   // 獲取用戶輸入的姓名、公司、生日和信箱
   var name = document.getElementById('name').value;
+  var phone = document.getElementById('phone').value;
+  var recommender = document.getElementById('recommender').value;
   var company = document.getElementById('company').value;
   var birthday = document.getElementById('birthday').value;
   var email = document.getElementById('email').value;
 
   // 在控制台輸出資料
   console.log('姓名:', name);
+  console.log('電話:', phone);
+  console.log('推薦人:', recommender);
   console.log('公司:', company);
   console.log('生日:', birthday);
   console.log('信箱:', email);
@@ -50,6 +54,8 @@ userForm.addEventListener('submit', function(event) {
   // 將資料儲存到 Firestore
   db.collection('Tourist_Guide').add({
     name: name,
+    phone: phone,
+    recommender: recommender,
     company: company,
     birthday: birthday,
     email: email,
